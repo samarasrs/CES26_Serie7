@@ -15,15 +15,23 @@ export default class App extends Component {
 
   addDigit = n => {
     if(this.state.expressao.length<10){
-      if(n !== '.' || (n === '.' && !this.state.ponto)){
+      if(n !== '.' || (n === '.' && !this.state.ponto  )){
         if(this.state.ultimo === '='){
-          this.setState({expressao: ''})
+
+          const displayValue = n
+          this.setState({expressao:displayValue})
+          if (n === '.'){
+            this.setState({ponto:true, ultimo:'.'})
+          }
         }
-        const displayValue = this.state.expressao + n
-        this.setState({expressao:displayValue,ultimo: 'N'})
-        if (n === '.'){
-          this.setState({ponto:true, ultimo:'.'})
+        else{
+          const displayValue = this.state.expressao + n
+          this.setState({expressao:displayValue,ultimo: 'N'})
+          if (n === '.'){
+            this.setState({ponto:true, ultimo:'.'})
+          }
         }
+        
       }
     }
   }
